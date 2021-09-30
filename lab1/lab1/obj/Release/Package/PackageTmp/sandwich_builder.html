@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://bootswatch.com/5/lux/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="main.css" rel="stylesheet" type="text/css" />
+    <title>Sandwich Builder Form</title>
+    <link rel="shortcut icon" type="image/jpg" href="Pictures/sandwichfav.png" />
+    <script type="text/javascript">
+        function SubmitForm() {
+
+            //i'm the best input validator in the history of mankind
+            //check if name is empty
+            //check if phone number is empty
+            //check if either toasted/untoasted option is checked
+            //check if a spread is selected
+            var name = document.getElementById("txtName").value;
+            var phoneNumber = document.getElementById("txtPhoneNumber").value;
+            var toasted = document.getElementById("toasted").checked;
+            var notToasted = document.getElementById("notToasted").checked;
+            var spread1 = document.getElementById("spread1").checked;
+            var spread2 = document.getElementById("spread2").checked;
+            var spread3 = document.getElementById("spread3").checked;
+            var spread4 = document.getElementById("spread4").checked;
+            var spread5 = document.getElementById("spread5").checked;
+            var tip = document.getElementById("txtTip").value;
+            if (tip == "") {
+                tip = 0;
+                document.getElementById("txtTip").value = 0;
+            }
+            if (name == "") {
+                alert("Please enter a name");
+            } else if (phoneNumber == "") {
+                alert("Please enter a phone number");
+            } else if (toasted == false && notToasted == false) {
+                alert("Please select toasted or untoasted options");
+            } else if (spread1 == false && spread2 == false && spread3 == false && spread4 == false && spread5 == false) {
+                alert("Please select a spread");
+            } else if (isNaN(tip)) {
+                alert("Please enter a valid number as a tip");
+            } else if (tip < 0) {
+                alert("Can't tip a negative number");
+            } else {
+                document.getElementById("frmSandwichBuilder").submit();
+            }
+
+
+
+        }
+    </script>
+</head>
+<body>
+    <div style="background-image: url('Pictures/sandwichbg.jpg');" class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
+        <main>
+            <h1 class="text-white">BUILD YOUR DREAM SANDWICH.</h1>
+            <p class="text-white">Place an order for a customized sandwich using this online form.</p>
+            <p >
+                <a href="#txtLabel" class="btn btn-lg btn-secondary fw-bold border-white bg-white">START NOW</a>
+            </p>
+        </main>
+    </div>
+
+    <br />
+
+    <form class="col-6 offset-3" id="frmSandwichBuilder" method="post" action="Main.aspx">
+        <div>
+            <label id="txtLabel" for="txtname" class="form-label mt-4">What's your name?</label>
+            <input class="form-control" type="text" id="txtName" name="txtName" />
+        </div>
+        <div>
+
+            <label for="txtPhoneNumber" class="form-label mt-4">What's your phone number?</label>
+            <input class="form-control" type="text" id="txtPhoneNumber" name="txtPhoneNumber" />
+        </div>
+        <div>
+
+            <label for="lstbSize" class="form-label mt-4">What size sandwich would you like?</label>
+            <select class="form-select" id="lstbSize" name="lstbSize">
+                <option label="Small $1.00">Small</option>
+                <option label="Medium $2.00">Medium</option>
+                <option label="Large $3.00">Large</option>
+            </select>
+        </div>
+        <fieldset class="form-group">
+            <legend class="mt-4">Toasted?</legend>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="toasted" name="toasted" value="Toasted" />
+                <label class="form-check-label" for="toasted">Yes $0.50</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="notToasted" name="toasted" value="Not Toasted" />
+                <label class="form-check-label" for="notToasted">No $0.00</label>
+            </div>
+
+        </fieldset>
+
+        <fieldset class="form-group">
+            <legend class="mt-4">Spreads</legend>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="spread1" name="spread" value="Mayo" />
+                <label class="form-check-label" for="spread1">Mayo $1.00</label> <br />
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="spread2" name="spread" value="Mustard" />
+                <label class="form-check-label" for="spread2">Mustard $0.75</label> <br />
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="spread3" name="spread" value="Avocado Ranch" />
+                <label class="form-check-label" for="spread3">Avocado Ranch $1.50</label> <br />
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="spread4" name="spread" value="Pesto" />
+                <label class="form-check-label" for="spread4">Pesto $1.00</label> <br />
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="spread5" name="spread" value="Jam" />
+                <label class="form-check-label" for="spread5">Jam $2.00</label> <br />
+            </div>
+
+        </fieldset>
+
+
+        <fieldset class="form-group">
+            <legend class="mt-4">Ingredients</legend>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="ingredient1" name="ingredient1" value="Lettuce" />
+                <label for="ingredient1">Lettuce $3.00</label> <br />
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="ingredient2" name="ingredient2" value="Tomato" />
+                <label for="ingredient2">Tomato $5.00</label> <br />
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="ingredient3" name="ingredient3" value="Onion" />
+                <label for="ingredient3">Onion $6.00</label> <br />
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="ingredient4" name="ingredient4" value="Egg" />
+                <label for="ingredient4">Egg $50.00</label> <br />
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="ingredient5" name="ingredient5" value="Mystery" />
+                <label for="ingredient5">Mystery $100.00</label><br />
+            </div>
+
+
+
+        </fieldset>
+        <fieldset class="form-group">
+            <legend class="mt-4">Extras</legend>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="extra1" name="extra1" value="Bacon" />
+                <label for="extra1">Bacon $3.00</label> <br />
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="extra2" name="extra2" value="Cheese" />
+                <label for="extra2">Cheese $5.00</label> <br />
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="extra3" name="extra3" value="Meat" />
+                <label for="extra3">Meat $6.00</label> <br />
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="extra4" name="extra4" value="Salt" />
+                <label for="extra4">Salt $50.00</label> <br />
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="extra5" name="extra5" value="Spread" />
+                <label for="extra5">Spread $100.00</label><br />
+            </div>
+
+
+
+        </fieldset>
+
+        <div>
+            <label for="mealOptions" class="form-label mt-4">Meal Options?</label>
+            <select class="form-select" id="mealOptions" name="meal">
+                <option label="Just the sandwich $0.00">Just the sandwich</option>
+                <option label="Meal with chips $12.50">Meal with chips</option>
+                <option label="Meal with fruit $10.00">Meal with fruit</option>
+                <option label="Meal with cookie $15.50">Meal with cookie</option>
+                <option label="Meal with chicken nuggets $50.00">Meal with chicken nuggets</option>
+            </select>
+        </div>
+
+        <div>
+            <label class="form-label mt-4" for="txtTip">Please enter a tip amount:</label> <br />
+            <input class="form-control" type="text" id="txtTip" name="txtTip" />
+        </div>
+        <br />
+        <div class="mx-auto" style="width: 200px;">
+            <button class="btn btn-outline-primary" type="button" id="btnProcess" name="btnProcess" value="Submit Form" onclick="SubmitForm()">Submit Order</button>
+        </div>
+    </form>
+</body>
+</html>
